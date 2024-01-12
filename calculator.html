@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #08eefa;
+          text-align: center;
+        }
+    
+        h2 {
+          color: #333;
+        }
+    
+        form {
+          display: inline-block;
+          text-align: left;
+        }
+    
+        input {
+          width: 50px;
+          height: 50px;
+          font-size: 18px;
+          margin: 5px;
+          padding: 10px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          cursor: pointer;
+          outline: none;
+        }
+    
+        input:active {
+          background-color: #e0e0e0;
+        }
+    
+        input[type="text"] {
+          width: 212px;
+          margin-bottom: 10px;
+          font-size: 20px;
+          padding: 10px;
+          text-align: right;
+          border: 1px solid #ccc;
+          outline: none;
+        }
+      </style>
+
+</head>
+<body>
+
+  <h2>Simple Calculator</h2>
+  
+  <form name="calculator">
+    <input type="text" name="display" id="display" readonly>
+    <br>
+    <input type="button" value="7" onclick="appendNumber('7')">
+    <input type="button" value="8" onclick="appendNumber('8')">
+    <input type="button" value="9" onclick="appendNumber('9')">
+    <input type="button" value="/" onclick="appendOperator('/')">
+    <br>
+    <input type="button" value="4" onclick="appendNumber('4')">
+    <input type="button" value="5" onclick="appendNumber('5')">
+    <input type="button" value="6" onclick="appendNumber('6')">
+    <input type="button" value="-" onclick="appendOperator('-')">
+    <br>
+    <input type="button" value="1" onclick="appendNumber('1')">
+    <input type="button" value="2" onclick="appendNumber('2')">
+    <input type="button" value="3" onclick="appendNumber('3')">
+    <input type="button" value="+" onclick="appendOperator('+')">
+    <br>
+    <input type="button" value="0" onclick="appendNumber('0')">
+    <input type="button" value="." onclick="appendDecimal()">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="C" onclick="clearDisplay()">
+  </form>
+
+  <script>
+    function appendNumber(number) {
+      document.calculator.display.value += number;
+    }
+
+    function appendOperator(operator) {
+      document.calculator.display.value += operator;
+    }
+
+    function appendDecimal() {
+      const currentDisplay = document.calculator.display.value;
+      if (currentDisplay.indexOf('.') === -1) {
+        document.calculator.display.value += '.';
+      }
+    }
+
+    function calculate() {
+      const expression = document.calculator.display.value;
+      try {
+        const result = eval(expression);
+        document.calculator.display.value = result;
+      } catch (error) {
+        document.calculator.display.value = 'Error';
+      }
+    }
+
+    function clearDisplay() {
+      document.calculator.display.value = '';
+    }
+  </script>
+
+</body>
+</html>
